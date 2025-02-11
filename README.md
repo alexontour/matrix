@@ -16,7 +16,7 @@ Voraussetzung für die Installation ist ein Host mit einer öffentlichen Interne
 * Beispiel-Hosting-Anbieter: [Netcup](https://www.netcup.com)
 * VPS mit Public IP/ Domain (Beispiel): `185.xxx.xxx.xxx` / `v2200000000000000000.nicesrv.de`
 
-![VPS Host](https://github.com/user-attachments/assets/206bb8da-3cdb-431e-a952-14d25222f88f)
+![VPS Host](/figures/architektur_setup.png)
 
 ## Debian 12 installieren
 Die Installation des Betriebssystems erfolgt über ein bereitgestelltes Image:
