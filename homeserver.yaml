@@ -1,0 +1,63 @@
+# Configuration file for Synapse.
+#
+# This is a YAML file: see [1] for a quick introduction. Note in particular
+# that *indentation is important*: all the elements of a list or dictionary
+# should have the same indentation.
+#
+# [1] https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+#
+# For more information on how to configure Synapse, including a complete accounting of
+# each option, go to docs/usage/configuration/config_documentation.md or
+# https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html
+server_name: "v2200000000000000000.nicesrv.de"
+pid_file: /data/homeserver.pid
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    resources:
+      - names: [client, federation]
+        compress: false
+database:
+  name: psycopg2
+  txn_limit: 10000
+  args:
+    user: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    database: synapse
+    host: matrix-synapse_db-1
+    port: 5432
+    cp_min: 5
+    cp_max: 10
+log_config: "/data/v2200000000000000000.nicesrv.de.log.config"
+media_store_path: /data/media_store
+registration_shared_secret: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+report_stats: true
+macaroon_secret_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+form_secret: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+signing_key_path: "/data/v2200000000000000000.nicesrv.de.signing.key"
+trusted_key_servers:
+  - server_name: "matrix.org"
+
+#FEDERATION
+federation_domain_whitelist:
+  - "matrix.org"
+allow_public_rooms_over_federation: true
+allow_public_rooms_without_auth: true
+allow_guest_access: true
+federation_rc_minimum: 100
+
+#REGISTRATION
+enable_registration: true
+enable_registration_without_verification: true  # CAPTCHA oder E-Mail erforderlich
+recaptcha_enabled: true
+recaptcha_sitekey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # Replace with your actual Site Key
+recaptcha_secret: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # Replace with your actual Secret Key
+recaptcha_bypass_for_trusted_users: true
+
+#MAUTRIX WHATSAPP-Bridge
+app_service_config_files:
+  - /data/appservice_registration/mautrix-whatsapp-registration.yaml
+
+# vim:ft=yaml

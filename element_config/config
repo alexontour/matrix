@@ -1,0 +1,13 @@
+{
+  "default_server_config": {
+    "m.homeserver": {
+      "base_url": "https://matrix.v2200000000000000000.nicesrv.de"
+    }
+  },
+  "brand": "ALX",
+  "disable_custom_urls": true,
+  "branding": {
+    "logo": "/custom/ALX.png",
+    "favicon": "/custom/ALX.ico"
+  }
+}

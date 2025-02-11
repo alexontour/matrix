@@ -1,0 +1,14 @@
+id: whatsapp
+url: http://localhost:29318
+as_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+hs_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+sender_localpart: Df4JP5b5QuRZWi9cjXTo8jcebNGUnneZ
+rate_limited: false
+namespaces:
+    users:
+        - regex: ^@whatsappbot:v2200000000000000000\.nicesrv\.de$
+          exclusive: true
+        - regex: ^@whatsapp_.*:v2200000000000000000\.nicesrv\.de$
+          exclusive: true
+de.sorunome.msc2409.push_ephemeral: true
+receive_ephemeral: true
