@@ -56,28 +56,22 @@ docker run --rm --mount type=volume,src=matrix_synapse_data,dst=/data \
 -e SYNAPSE_REPORT_STATS=yes \
 matrixdotorg/synapse:latest generate
 ```
-4. Datei unter `/matrix/data` editieren.
+4. Datei unter `/matrix/data` editieren. In unserm Beispiel wird die Postgres-DB konfiguriert und eingestellt, dass sich Benutzer selbst registieren können. Ein Captcha sichert dies ab. Details zu den möglichen Konfigurationen inkl. Google Captcha finden sich im Internet. 
 
-![Konfigurationsdatei](https://github.com/user-attachments/assets/39eed405-7996-457c-9819-31de8adfde4d)
+![Konfigurationsdatei](/figures/homeserver_yaml.png)
 
 5. `docker-compose.yaml` ins Installationsverzeichnis kopieren.
 6. `.env`-Datei mit geheimen Infos erstellen (`ACME_EMAIL=,PGADMIN_EMAIL=,PGADMIN_PASSWORD=,POSTGRES_PASSWORD=,POSTGRES_USER=`).
-
-![.env Datei](https://github.com/user-attachments/assets/be7aa4ec-c5d3-4cdb-85da-36fae2cd1d0f)
-
 7. Container starten:
 ```bash
 docker compose up -d
 ```
 8. Verzeichnisstruktur prüfen:
 
-![Docker Volumes](https://github.com/user-attachments/assets/1216e662-5133-46a5-b9ff-046b311d8c55)
+![Docker Volumes](/figures/docker_volumes.png)
 
 ## Administrator-Account erstellen
 1. In Portainer einloggen und die Container-Konsole des Synapse-Containers öffnen.
-
-![Portainer Login](https://github.com/user-attachments/assets/bfd8c52f-8ca1-4602-b31f-61164c5705c9)
-
 2. Admin-User erstellen:
 ```bash
 docker exec -it matrix-synapse-1 register_new_matrix_user \
@@ -87,27 +81,17 @@ http://localhost:8008 -c /data/homeserver.yaml \
 3. Weitere Benutzer ohne `--admin` erstellen.
 4. Synapse-Administrator-Console unter `https://admin.v2200000000000000000.nicesrv.de/` nutzen.
 
-![Synapse Admin Console](https://github.com/user-attachments/assets/e1893508-4982-4348-8fb0-610f261ff175)
-
 ## Login über Element
 1. Web-Client nutzen: [Element](https://app.element.io/).
 
-![Element Login](https://github.com/user-attachments/assets/4f2b4b5d-f58e-4214-ab17-3bffd83dc6f3)
+![Element Login](/figures/client_element.png)
 
 ## Federation
 1. NGINX konfigurieren. default.conf ins Verzeichnis kopieren.
-
-![NGINX](https://github.com/user-attachments/assets/c42af6ff-ad8e-4855-9103-a7dae4a112f7)
-
 2. Federation in homeserver.yaml konfigurieren
-
-![Federation](https://github.com/user-attachments/assets/ce6fd165-6e08-45ee-a485-118389260735)
-
-3. Überprüfen, ob die Konfiguration korrekt ist:
+3. Überprüfen, ob die Konfiguration für die Federation korrekt ist:
 
 [Federation Tester](https://federationtester.matrix.org/)
-
-![Federation Tester](https://github.com/user-attachments/assets/4d4f2119-1b77-431f-a5ca-7ba57a82e201)
 
 ## WhatsApp-Bridge installieren
 1. Installationsverzeichnis `mautrix-whatsapp` anlegen und wechseln.
@@ -120,13 +104,7 @@ docker pull dock.mau.dev/mautrix/whatsapp:latest
 docker run --rm -v `pwd`:/data:z dock.mau.dev/mautrix/whatsapp:latest
 ```
 4. Konfigurationsdatei ins Syanpse-Volume-Verzeichnis kopieren
-
-![Mautrix WhatsApp Bridge](https://github.com/user-attachments/assets/33af362c-41f4-4195-8d58-6059ebc04c70)
-
 5. homeserver.yaml anpassen
-
-![image](https://github.com/user-attachments/assets/7237e924-292b-4a63-8acf-22d0a854dd12)
-
 6. Container starten:
 ```bash
 docker run --restart unless-stopped --network=matrix_matrix_network \
