@@ -56,7 +56,8 @@ docker run --rm --mount type=volume,src=matrix_synapse_data,dst=/data \
 -e SYNAPSE_REPORT_STATS=yes \
 matrixdotorg/synapse:latest generate
 ```
-4. Datei unter `/matrix/data` editieren. In unserm Beispiel wird die Postgres-DB konfiguriert und eingestellt, dass sich Benutzer selbst registieren können. Ein Captcha sichert dies ab. Details zu den möglichen Konfigurationen inkl. Google Captcha finden sich im Internet. 
+4. Datei wird im Volume erstellt (-> /var/lib/docker/volumes/matrix_synapse_data/_data)
+5.  Datei unter `/matrix/data` editieren. In unserm Beispiel wird die Postgres-DB konfiguriert und eingestellt, dass sich Benutzer selbst registieren können. Ein Captcha sichert dies ab. Details zu den möglichen Konfigurationen inkl. Google Captcha finden sich im Internet. 
 
 ![Konfigurationsdatei](/figures/homeserver_yaml.png)
 
